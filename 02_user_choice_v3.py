@@ -1,0 +1,41 @@
+# Version 2 - error message included when calling function
+
+# Functions go here
+def choice_checker(question, valid_list, error):
+
+    valid = False
+    while not valid:
+
+        # Ask user for choice (and put choice in lowercase)
+        response = input(question).lower()
+
+        if response == "r" or response == "rock":
+            return "rock"
+        elif response == "p" or response == "paper":
+            return "paper"
+        elif response == "s" or response == "scissors":
+            return "scissors"
+
+        # check for exit code...
+        elif response == "xxx":
+            return "xxx"
+        else:
+            print(error)
+
+
+# Main routine goes here
+
+# lists for checking responses
+rps_lists = ["rock", "paper", "scissors", "xxx"]
+
+# Loop for testing purposes
+user_choice = ""
+while user_choice != "xxx":
+
+    # Ask user for choice and check it's valid
+    user_choice = choice_checker("Choose rock / paper / scissors (r/p/s): "
+                                 "", "rps_list",
+                                 "Please choose from rock / paper / scissors (or xxx to quit)")
+
+    # print out choice for comparison purposes
+    print(f"You chose {user_choice}")
