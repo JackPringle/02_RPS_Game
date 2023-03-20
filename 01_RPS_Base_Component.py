@@ -39,7 +39,34 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 
 # Ask user for # of rounds then loop...
+rounds_played = 0
+choose_instruction = "Please choose rock (r), paper (p), or scissors (s)"
 
+# Ask user for # of rounds, <enter> for infinite mode
+rounds = check_rounds()
+
+end_game = "no"
+while end_game == "no":
+
+    # Start Of Game Play Loop
+
+    # Rounds Heading
+    print()
+    if rounds == "":
+        heading = f"Continuous Mode: Round {rounds_played + 1}"
+    else:
+        heading = f"Round {rounds_played + 1} of {rounds}"
+
+    print(heading)
+    choose = input(f"{choose_instruction} or 'xxx' to end: ")
+
+    # End game if exit code is typed
+    if choose == "xxx":
+        break
+
+    # **** rest of the loop / game ****
+
+    print("Thank you for playing")
 
 # Ask user if they want to see their game history.
 # If 'yes' show game history
