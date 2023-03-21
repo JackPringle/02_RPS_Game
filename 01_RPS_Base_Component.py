@@ -28,6 +28,20 @@ def check_rounds():
         return response
 
 
+def choice_checker(question, valid_list, error):
+    while True:
+
+        # Ask user for choice (and put choice in lowercase)
+        response = input(question).lower()
+
+        for item in valid_list:
+            if response == item or response == item[0]:
+                return item
+
+        print(error)
+        print()
+
+
 # Main routine goes here
 
 # List of valid response
@@ -58,10 +72,20 @@ while end_game == "no":
         heading = f"Round {rounds_played + 1} of {rounds}"
 
     print(heading)
-    choose = input(f"{choose_instruction} or 'xxx' to end: ")
+    choose_instruction = "Please choose from rock (r), paper (p), scissors (s)"
+    choose_error = "Please choose from rock / paper / scissors (or xxx to quit)"
+
+    # Ask user for choice and check it's valid
+    choose = choice_checker(choose_instruction, rps_list, choose_error)
+    print(f'you chose {choose}')
+
+    rounds_played += 1
 
     # End game if exit code is typed
     if choose == "xxx":
+        break
+
+    if rounds_played == rounds:
         break
 
     # **** rest of the loop / game ****
