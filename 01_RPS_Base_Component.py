@@ -54,6 +54,9 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # Ask user for # of rounds then loop...
 rounds_played = 0
+
+rounds_lost = 0
+rounds_drawn = 0
 choose_instruction = "Please choose rock (r), paper (p), or scissors (s)"
 
 # Ask user for # of rounds, <enter> for infinite mode
@@ -76,55 +79,54 @@ while end_game == "no":
     choose_error = "Please choose from rock / paper / scissors (or xxx to quit)"
 
     # Ask user for choice and check it's valid
-    choose = choice_checker(choose_instruction, rps_list, choose_error)
-    print(f'you chose {choose}')
+    user_choice = choice_checker(choose_instruction, rps_list, choose_error)
+    print(f'You chose {user_choice}')
 
     # get computer choice
-    comp_choice = random.choice(rps_list)
-    print(comp_choice, end="\t")
+    comp_choice = random.choice(rps_list[:-1])
 
-    # compare choices
-    # RPS Component 3 - Compare user choice and computer choice
-    rps_list = ["rock", "paper", "scissors"]
-    comp_index = 0
-    for item in rps_list:
-        user_index = 0
-        for item in rps_list:
-            user_choice = rps_list[user_index]
-            comp_choice = rps_list[comp_index]
-            user_index += 1
+    # Compare choices...
+    if comp_choice == user_choice:
+        result = "tied"
+        rounds_drawn += 1
+    elif comp_choice == "rock" and user_choice == "scissors":
+        result = "lost"
+    elif comp_choice == "paper" and user_choice == "rock":
+        result = "lost"
+    elif comp_choice == "scissors" and user_choice == "paper":
+        result = "lost"
+        rounds_lost += 1
+    else:
+        result = "won"
 
-            # Compare options...
+    if result == "tied":
+        feedback = "It's a tie"
+    else:
+        feedback = f"{user_choice} vs {comp_choice} - you {result}"
 
-            if comp_choice == user_choice:
-                result = "tie"
-            elif comp_choice == "rock" and user_choice == "scissors":
-                result = "lose"
-            elif comp_choice == "paper" and user_choice == "rock":
-                result = "lose"
-            elif comp_choice == "scissors" and user_choice == "paper":
-                result = "lose"
-            else:
-                result = "win"
-
-            print(f"You chose {user_choice}, the computer chose {comp_choice}. \nResult: {result}")
-            print()
-
-        comp_index += 1
-        print()
+    print(f"You chose {user_choice}, the computer chose {comp_choice}. \nResult: {result}")
+    print()
 
     # End game if exit code is typed
-    if choose == "xxx":
+    if user_choice == "xxx":
         break
 
     if rounds_played == rounds:
         break
 
-    # **** rest of the loop / game ****
-
-    print("Thank you for playing")
+# **** rest of the loop / game ****
 
 # Ask user if they want to see their game history.
 # If 'yes' show game history
 
 # Show game instructions
+
+# Quick Calculations (stats)
+rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+# End of Game Statements (\t means <tab>)
+print()
+print('***** End Game Summary *****')
+print(f"Won: {rounds_won} \t|\t Lost: {rounds_lost} \t|\t Draw: {rounds_drawn}")
+print()
+print("Thanks for playing")
