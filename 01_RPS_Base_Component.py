@@ -76,11 +76,10 @@ while end_game == "no":
 
     print(heading)
     choose_instruction = "Please choose from rock (r), paper (p), scissors (s)"
-    choose_error = "Please choose from rock / paper / scissors (or xxx to quit)"
+    choose_error = "Please choose from rock (r) / paper (p) / scissors (s) / (or xxx to quit)"
 
     # Ask user for choice and check it's valid
     user_choice = choice_checker(choose_instruction, rps_list, choose_error)
-    print(f'You chose {user_choice}')
 
     # get computer choice
     comp_choice = random.choice(rps_list[:-1])
@@ -95,9 +94,11 @@ while end_game == "no":
         result = "lost"
     elif comp_choice == "scissors" and user_choice == "paper":
         result = "lost"
-        rounds_lost += 1
     else:
         result = "won"
+
+    if result == "lost":
+        rounds_lost += 1
 
     if result == "tied":
         feedback = "It's a tie"
@@ -110,6 +111,8 @@ while end_game == "no":
     # End game if exit code is typed
     if user_choice == "xxx":
         break
+
+    rounds_played += 1
 
     if rounds_played == rounds:
         break
