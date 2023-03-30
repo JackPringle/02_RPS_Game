@@ -32,9 +32,5 @@ print()
 
 # display game stats with % values to the nearest whole number
 print("******** Game Statistics ********")
-print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, ({percent_lose:.0f}%)"
-
-
-
-
-
+print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, "
+      f"({percent_tie:.0f}%)")
