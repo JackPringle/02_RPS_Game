@@ -53,6 +53,8 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 
 # Ask user for # of rounds then loop...
+game_summary = []
+
 rounds_played = 0
 
 rounds_lost = 0
@@ -105,8 +107,9 @@ while end_game == "no":
     else:
         feedback = f"{user_choice} vs {comp_choice} - you {result}"
 
-    print(f"You chose {user_choice}, the computer chose {comp_choice}. \nResult: {result}")
-    print()
+    print(feedback)
+    outcome = f'Round {rounds_played + 1}: {feedback}'
+    game_summary.append(outcome)
 
     # End game if exit code is typed
     if user_choice == "xxx":
@@ -120,6 +123,7 @@ while end_game == "no":
 # **** rest of the loop / game ****
 
 # Ask user if they want to see their game history.
+
 # If 'yes' show game history
 
 # Show game instructions
@@ -127,9 +131,19 @@ while end_game == "no":
 # Quick Calculations (stats)
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# End of Game Statements (\t means <tab>)
+# ***** Calculate Game Stats *****
+percent_win = rounds_won / rounds_played * 100
+percent_lose = rounds_lost / rounds_played * 100
+percent_tie = rounds_drawn / rounds_played * 100
+
 print()
-print('***** End Game Summary *****')
-print(f"Won: {rounds_won} \t|\t Lost: {rounds_lost} \t|\t Draw: {rounds_drawn}")
+print("******** Game History ********")
+for game in game_summary:
+    print(game)
+
 print()
-print("Thanks for playing")
+
+# display game stats with % values to the nearest whole number
+print("******** Game Statistics ********")
+print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, "
+      f"({percent_tie:.0f}%)")
