@@ -2,6 +2,8 @@ import random
 
 
 # Functions go here
+
+# Checks round input is a valid response
 def check_rounds():
     while True:
         response = input("How many rounds: ")
@@ -28,6 +30,7 @@ def check_rounds():
         return response
 
 
+# Checks user choice of RPS
 def choice_checker(question, valid_list, error):
     while True:
 
@@ -42,7 +45,50 @@ def choice_checker(question, valid_list, error):
         print()
 
 
+# checks users enter yes / no to a given question
+def yes_no(question):
+    valid = False
+    while not valid:
+        response = input(question).lower()
+
+        if response == "yes" or response == "y":
+            return "yes"
+
+        elif response == "no" or response == "n":
+            return "no"
+
+        else:
+            print("Please answer yes / no")
+
+
+# displays instructions, returns ""
+def instructions():
+    print("**** How to PLay ****")
+    print("-------------------------------------------------------------------")
+    print("First, enter the amount of rounds of RPS you want to play.")
+    print("For each round, enter either Rock (r), Paper (p), or Scissors (s).")
+    print("You will be playing against the computer!")
+    print("After you have played all the rounds you requested, you will see your game summary and statistics. ")
+    print("Good luck player!")
+    print("-------------------------------------------------------------------")
+    print()
+    return ""
+
+
 # Main routine goes here
+
+# Welcome user to game
+print("---------------------------------------------------------")
+print("***** WELCOME TO R/P/S GAME BY FAVOURITE STUDENT *****")
+print("---------------------------------------------------------")
+print()
+
+# Ask user if they want instructions
+played_before = yes_no("Have you played the game before? ")
+print()
+
+if played_before == "no":
+    instructions()
 
 # List of valid response
 yes_no_list = ["yes", "no"]
@@ -147,3 +193,10 @@ print()
 print("******** Game Statistics ********")
 print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, "
       f"({percent_tie:.0f}%)")
+
+
+# Thanks user for playing
+print("-------------------------------------------------------------------")
+print("***** THANKYOU FOR PLAYING R/P/S GAME BY FAVOURITE STUDENT *****")
+print("-------------------------------------------------------------------")
+print("I know you're impressed miss ;)")
