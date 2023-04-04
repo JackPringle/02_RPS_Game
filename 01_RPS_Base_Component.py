@@ -177,26 +177,30 @@ while end_game == "no":
 # Quick Calculations (stats)
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# ***** Calculate Game Stats *****
-percent_win = rounds_won / rounds_played * 100
-percent_lose = rounds_lost / rounds_played * 100
-percent_tie = rounds_drawn / rounds_played * 100
+if rounds_played > 0:
+    # ***** Calculate Game Stats *****
+    percent_win = rounds_won / rounds_played * 100
+    percent_lose = rounds_lost / rounds_played * 100
+    percent_tie = rounds_drawn / rounds_played * 100
 
-print()
-print("******** Game History ********")
-for game in game_summary:
-    print(game)
+    print()
+    print("******** Game History ********")
+    for game in game_summary:
+        print(game)
 
-print()
+    print()
 
-# display game stats with % values to the nearest whole number
-print("******** Game Statistics ********")
-print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, "
-      f"({percent_tie:.0f}%)")
+    # display game stats with % values to the nearest whole number
+    print("******** Game Statistics ********")
+    print(f"Win: {rounds_won}, ({percent_win:.0f}%)\nLoss: {rounds_lost}, ({percent_lose:.0f}%)\nTie: {rounds_drawn}, "
+          f"({percent_tie:.0f}%)")
 
 
-# Thanks user for playing
-print("-------------------------------------------------------------------")
-print("***** THANKYOU FOR PLAYING R/P/S GAME BY FAVOURITE STUDENT *****")
-print("-------------------------------------------------------------------")
-print("I know you're impressed miss ;)")
+    # Thanks user for playing
+    print("-------------------------------------------------------------------")
+    print("***** THANKYOU FOR PLAYING R/P/S GAME BY FAVOURITE STUDENT *****")
+    print("-------------------------------------------------------------------")
+    print("I know you're impressed miss ;)")
+
+else:
+    print("You chickened out! 🐔")
